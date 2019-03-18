@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href= "{% static 'autos/css/bootstrap.min.css' %}">
+    <title>Услуги автосервисов</title>
+
+    <link rel="stylesheet" href=" {% static 'autos/css/mainstyle.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <a class="navbar-brand" href="index">
+            <img src="{% static 'autos/images/auto.png' %}" width="70" height="50" class="d-inline-block align-top" alt="">
+            Портал автомастерских
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index">Частным клиентам</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="offers">Автомастерским</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!--Карточки услуг-->
+        <div class="row">
+            {% for item in offers %}
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h5 class="card-title">{{ item.service }}</h5>
+                        <p class="card-text">{{ item.autoservice }}, от {{ item.cost }} р.</p>
+{#                        <p class="card-text">{{ item.text }}</p>#}
+                        <form action="oneitem" method="POST">
+                            <button type="submit" class="btn btn-primary" name="view" value="{{ item.id }}">Подробнее</button>
+                        </form>
+{#                        <h5 class="card-title">Замена масла</h5>#}
+{#                        <p class="card-text">Автоцентр АНТ па Павловском, от 500 р.</p>#}
+{#                        <a href="#" class="btn btn-primary">Подробнее</a>#}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="../../autoservice/static/autos/js/bootstrap.min.js"></script>
+</body>
+</html>
